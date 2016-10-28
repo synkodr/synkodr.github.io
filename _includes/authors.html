@@ -1,0 +1,8 @@
+{% for author in site.data.authors %}
+<div class="chip">
+  <img src="{{site.baseurl}}/{{author.pic}}" alt="N/A"/>
+  <a href="{{author.synlink}}" target="_blank">{{author.name}}</a>
+</div>
+{% else %}
+  Authors are not listed
+{% endfor %}

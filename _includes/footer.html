@@ -1,38 +1,24 @@
-<footer class="site-footer">
+<footer class="container">
+  <div class="row mt20">
+    {% if site.made_by.name %}
+    <div class="col-md-4 text-center">
+      <p>
+        Created with <i class="fa fa-heart text-danger"></i> by
+        <a href="{{site.made_by.link}}">{{ site.made_by.name }}</a>
+      </p>
+      <p>We're hosted at
+        <a href="http://github.com/synkodr/synkodr.github.io" target="_blank"><i class="fa fa-github-alt"></i> github pages</a>
+      </p>
+    </div>
+    {% endif %}
 
-  <div class="wrapper">
-
-    <h2 class="footer-heading">{{ site.title }}</h2>
-
-    <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
-        <ul class="contact-list">
-          <li>{{ site.title }}</li>
-          <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col footer-col-2">
-        <ul class="social-media-list">
-          {% if site.github_username %}
-          <li>
-            {% include icon-github.html username=site.github_username %}
-          </li>
-          {% endif %}
-
-          {% if site.twitter_username %}
-          <li>
-            {% include icon-twitter.html username=site.twitter_username %}
-          </li>
-          {% endif %}
-        </ul>
-      </div>
-
-      <div class="footer-col footer-col-3">
-        <p>{{ site.description }}</p>
-      </div>
+    <div class="col-md-4 text-center">
+      {% include authors.html %}
     </div>
 
-  </div>
-
+    <div class="col-md-4 text-center">
+      <div class="col-md-4 text-center">
+<a target="_blank" href="{{site.facebook}}"><li class="social facebook"><img src="{{site.baseurl}}/images/socials/facebook.svg" alt="{{site.facebook}}"></li></a><a target="_blank" href="{{site.github}}"><li class="social github"><img src="{{site.baseurl}}/images/socials/github.svg" alt="{{site.github}}"></li></a>
+      </div>
+    </div>
 </footer>
