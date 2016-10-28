@@ -6,7 +6,7 @@ categories: site update
 ---
 
 `Edusynk` or "Synkoda Edu" is a small project started by Synkoda.com forum team
-for creating a rich library of technical tutorials, examples and references.
+ for creating a rich library of technical tutorials, examples and references.
 However at the time of writing this post this project is not officially
 launched.
 
