@@ -1,15 +1,47 @@
 ---
 layout: default
 ---
-<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+<div class="row">
+  <div class="col-md-8 mt20">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
+        <p class="post-meta"><i class="fa fa-calendar text-info" aria-hidden="true"></i> <time datetime="{{ page.title | date_to_xmlscheme }}" itemprop="datePublished">{{ page.date | date: "%Y %b %-d" }}</time>{%if page.author %} <i class="fa fa-pencil text-danger" aria-hidden="true"></i> <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>{% endif %} {% if page.category %} <i class="fa fa-thumb-tack" aria-hidden="true"></i> {{ page.category }} {% endif %}</p>
+      </header>
 
-  <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
-    <p class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time>{% if page.author %} • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>{% endif %}</p>
-  </header>
+      <div class="post-content" itemprop="articleBody">
+        {{ content }}
+      </div>
+    </article>
+    <hr/>
+    <br/>
+      <div class="row">
+        {% if page.category %}
+        <h3 class="aux-header">More from this category...</h3><br/>
+        <div>
+          {% assign curcat = site.posts | where: 'category', page.category %}
+          {% assign curcat = curcat | where_exp: "item", "item.title != page.title" %}
+          {% for item in curcat limit:3 %}
+          <div class="col-md-4 card">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3 class="panel-title pull-left">{{ item.title | truncate: 25 }}</h3><span class="item-meta pull-right"><small>{{ item.date | date: "%Y %b %-d" }}</small></span>
+              </div>
+              {% if item.img %}
+              <img width="100%" src="{{site.baseurl}}/images/{{item.img}}" alt="{{item.title}}">
+              {% else %}
+              <img width="100%" src="{{site.baseurl}}/{{site.global_image}}" alt="{{site.title}}">
+              {% endif %}
+              <div class="panel-body"><small>
+                {{ item.excerpt | strip_html | strip_newlines | truncate: 100 }}</small>
+                <a href="{{ item.url | prepend: site.baseurl }}" class="btn btn-primary btn-sm pull-right mt10">Read</a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
 
-  <div class="post-content" itemprop="articleBody">
-    {{ content }}
+    <!-- include sidebar.html -->
   </div>
-
-</article>
